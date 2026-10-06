@@ -57,11 +57,17 @@ const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'database.json');
 
 // Initialize PostgreSQL pool if DATABASE_URL or Vercel Postgres is configured
+const dbCandidates = [
+  process.env.POSTGRES_URL,
+  process.env.POSTGRES_PRISMA_URL,
+  process.env.STORAGE_URL,
+  process.env.DATABASE_URL,
+].filter(Boolean) as string[];
+
+// In cloud/production environments, prioritize remote URLs over localhost
 const dbConnectionUrl =
-  process.env.DATABASE_URL ||
-  process.env.POSTGRES_URL ||
-  process.env.POSTGRES_PRISMA_URL ||
-  process.env.STORAGE_URL;
+  dbCandidates.find((url) => !url.includes('localhost') && !url.includes('127.0.0.1')) ||
+  dbCandidates[0];
 
 let pgPool: Pool | null = null;
 if (dbConnectionUrl) {
