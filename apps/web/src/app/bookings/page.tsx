@@ -27,7 +27,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
-export default function CustomerBookingsPage() {
+function CustomerBookingsContent() {
   const searchParams = useSearchParams();
   const initialTab = searchParams.get('tab') === 'requests' ? 'REQUESTS' : 'BOOKINGS';
   const initialEmail = searchParams.get('email') || '';
@@ -598,3 +598,18 @@ export default function CustomerBookingsPage() {
     </div>
   );
 }
+
+export default function CustomerBookingsPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <div className="min-h-screen bg-cream-50 py-24 flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-burgundy-900 border-t-transparent rounded-full animate-spin" />
+        </div>
+      }
+    >
+      <CustomerBookingsContent />
+    </React.Suspense>
+  );
+}
+
