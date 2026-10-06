@@ -39,6 +39,13 @@ CREATE TABLE users (
     full_name VARCHAR(128) NOT NULL,
     role user_role_type NOT NULL DEFAULT 'CUSTOMER',
     avatar_url TEXT,
+    telegram_user_id VARCHAR(64) UNIQUE,
+    telegram_username VARCHAR(128),
+    telegram_first_name VARCHAR(128),
+    telegram_last_name VARCHAR(128),
+    telegram_photo_url TEXT,
+    telegram_language_code VARCHAR(16),
+    telegram_linked_at TIMESTAMP WITH TIME ZONE,
     is_active BOOLEAN NOT NULL DEFAULT true,
     email_verified_at TIMESTAMP WITH TIME ZONE,
     phone_verified_at TIMESTAMP WITH TIME ZONE,
@@ -58,6 +65,13 @@ CREATE TABLE customers (
     vip_status BOOLEAN DEFAULT false,
     lifetime_value NUMERIC(14, 2) DEFAULT 0.00,
     preferred_language VARCHAR(8) DEFAULT 'en',
+    telegram_user_id VARCHAR(64) UNIQUE,
+    telegram_username VARCHAR(128),
+    telegram_first_name VARCHAR(128),
+    telegram_last_name VARCHAR(128),
+    telegram_photo_url TEXT,
+    telegram_language_code VARCHAR(16),
+    telegram_linked_at TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
@@ -372,6 +386,9 @@ CREATE TABLE audit_logs (
 
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_role ON users(role);
+CREATE INDEX idx_users_telegram_user_id ON users(telegram_user_id);
+CREATE INDEX idx_customers_customer ON customers(user_id);
+CREATE INDEX idx_customers_telegram_user_id ON customers(telegram_user_id);
 CREATE INDEX idx_events_customer ON events(customer_id);
 CREATE INDEX idx_events_status ON events(status);
 CREATE INDEX idx_events_date ON events(event_date);
@@ -382,3 +399,25 @@ CREATE INDEX idx_payments_reference ON payments(payment_reference);
 CREATE INDEX idx_gallery_featured ON gallery_projects(is_featured);
 CREATE INDEX idx_messages_event ON messages(event_id);
 CREATE INDEX idx_notifications_user ON notifications(user_id, is_read);
+
+-- ==============================================================================
+-- TELEGRAM MINI APP MIGRATION (APPLIED)
+-- ==============================================================================
+-- ALTER TABLE users
+--   ADD COLUMN IF NOT EXISTS telegram_user_id VARCHAR(64) UNIQUE,
+--   ADD COLUMN IF NOT EXISTS telegram_username VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_first_name VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_last_name VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_photo_url TEXT,
+--   ADD COLUMN IF NOT EXISTS telegram_language_code VARCHAR(16),
+--   ADD COLUMN IF NOT EXISTS telegram_linked_at TIMESTAMP WITH TIME ZONE;
+--
+-- ALTER TABLE customers
+--   ADD COLUMN IF NOT EXISTS telegram_user_id VARCHAR(64) UNIQUE,
+--   ADD COLUMN IF NOT EXISTS telegram_username VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_first_name VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_last_name VARCHAR(128),
+--   ADD COLUMN IF NOT EXISTS telegram_photo_url TEXT,
+--   ADD COLUMN IF NOT EXISTS telegram_language_code VARCHAR(16),
+--   ADD COLUMN IF NOT EXISTS telegram_linked_at TIMESTAMP WITH TIME ZONE;
+

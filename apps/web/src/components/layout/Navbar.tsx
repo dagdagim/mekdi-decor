@@ -22,6 +22,10 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  if (pathname?.startsWith('/telegram')) {
+    return null;
+  }
+
   const fetchCurrentUser = () => {
     fetch('/api/auth/me')
       .then((res) => res.json())

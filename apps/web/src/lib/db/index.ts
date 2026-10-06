@@ -755,6 +755,13 @@ class DatabaseService {
           eventsCount: 0,
           notes: 'Registered online portal account.',
           recentActivity: `Registered ${new Date(u.createdAt || Date.now()).toLocaleDateString()}`,
+          telegramUserId: u.telegramUserId,
+          telegramUsername: u.telegramUsername,
+          telegramFirstName: u.telegramFirstName,
+          telegramLastName: u.telegramLastName,
+          telegramPhotoUrl: u.telegramPhotoUrl,
+          telegramLanguageCode: u.telegramLanguageCode,
+          telegramLinkedAt: u.telegramLinkedAt,
           createdAt: u.createdAt || new Date().toISOString(),
         };
         list.push(synthesized);
@@ -870,6 +877,8 @@ class DatabaseService {
       try {
         const res = await pgPool.query(
           `SELECT id, email, phone, password_hash, full_name, role, avatar_url, is_active,
+                  telegram_user_id, telegram_username, telegram_first_name, telegram_last_name,
+                  telegram_photo_url, telegram_language_code, telegram_linked_at,
                   email_verified_at, phone_verified_at, verification_code, verification_code_expires_at,
                   last_login_at, created_at, updated_at
            FROM users
@@ -887,6 +896,13 @@ class DatabaseService {
             role: row.role,
             avatarUrl: row.avatar_url || undefined,
             isActive: row.is_active,
+            telegramUserId: row.telegram_user_id || undefined,
+            telegramUsername: row.telegram_username || undefined,
+            telegramFirstName: row.telegram_first_name || undefined,
+            telegramLastName: row.telegram_last_name || undefined,
+            telegramPhotoUrl: row.telegram_photo_url || undefined,
+            telegramLanguageCode: row.telegram_language_code || undefined,
+            telegramLinkedAt: row.telegram_linked_at ? row.telegram_linked_at.toISOString() : undefined,
             emailVerifiedAt: row.email_verified_at ? row.email_verified_at.toISOString() : null,
             phoneVerifiedAt: row.phone_verified_at ? row.phone_verified_at.toISOString() : null,
             verificationCode: row.verification_code || undefined,
@@ -902,6 +918,349 @@ class DatabaseService {
     }
     const found = (this.data.users || []).find((u) => u.email.toLowerCase() === cleanEmail);
     return found || null;
+  }
+
+  public async findUserByTelegramId(telegramUserId: string): Promise<(UserAccount & { password_hash?: string }) | null> {
+    const cleanId = String(telegramUserId).trim();
+    if (!cleanId) return null;
+    if (pgPool) {
+      try {
+        const res = await pgPool.query(
+          `SELECT id, email, phone, password_hash, full_name, role, avatar_url, is_active,
+                  telegram_user_id, telegram_username, telegram_first_name, telegram_last_name,
+                  telegram_photo_url, telegram_language_code, telegram_linked_at,
+                  email_verified_at, phone_verified_at, verification_code, verification_code_expires_at,
+                  last_login_at, created_at, updated_at
+           FROM users
+           WHERE telegram_user_id = $1`,
+          [cleanId]
+        );
+        if (res.rows.length > 0) {
+          const row = res.rows[0];
+          return {
+            id: row.id,
+            email: row.email,
+            phone: row.phone || undefined,
+            password_hash: row.password_hash,
+            fullName: row.full_name,
+            role: row.role,
+            avatarUrl: row.avatar_url || undefined,
+            isActive: row.is_active,
+            telegramUserId: row.telegram_user_id || undefined,
+            telegramUsername: row.telegram_username || undefined,
+            telegramFirstName: row.telegram_first_name || undefined,
+            telegramLastName: row.telegram_last_name || undefined,
+            telegramPhotoUrl: row.telegram_photo_url || undefined,
+            telegramLanguageCode: row.telegram_language_code || undefined,
+            telegramLinkedAt: row.telegram_linked_at ? row.telegram_linked_at.toISOString() : undefined,
+            emailVerifiedAt: row.email_verified_at ? row.email_verified_at.toISOString() : null,
+            phoneVerifiedAt: row.phone_verified_at ? row.phone_verified_at.toISOString() : null,
+            createdAt: row.created_at ? row.created_at.toISOString() : new Date().toISOString(),
+            updatedAt: row.updated_at ? row.updated_at.toISOString() : new Date().toISOString(),
+          };
+        }
+      } catch (err) {
+        console.warn('PG findUserByTelegramId fallback:', err);
+      }
+    }
+    const found = (this.data.users || []).find((u) => u.telegramUserId === cleanId);
+    return found || null;
+  }
+
+  public async findCustomerByTelegramId(telegramUserId: string): Promise<CustomerCRM | null> {
+    const cleanId = String(telegramUserId).trim();
+    if (!cleanId) return null;
+    if (pgPool) {
+      try {
+        const res = await pgPool.query(
+          `SELECT c.id, c.user_id, c.city, c.address, c.notes, c.vip_status, c.lifetime_value,
+                  c.telegram_user_id, c.telegram_username, c.telegram_first_name, c.telegram_last_name,
+                  c.telegram_photo_url, c.telegram_language_code, c.telegram_linked_at,
+                  c.created_at, u.full_name, u.email, u.phone
+           FROM customers c
+           LEFT JOIN users u ON c.user_id = u.id
+           WHERE c.telegram_user_id = $1 OR u.telegram_user_id = $1`,
+          [cleanId]
+        );
+        if (res.rows.length > 0) {
+          const row = res.rows[0];
+          return {
+            id: row.id,
+            userId: row.user_id,
+            fullName: row.full_name || 'Telegram Client',
+            email: row.email || `tg_${cleanId}@telegram.mekdidecor.com`,
+            phone: row.phone || '+251 911 000 000',
+            city: row.city || 'Addis Ababa',
+            address: row.address || 'Telegram Client Portal',
+            vipStatus: Boolean(row.vip_status),
+            lifetimeValue: Number(row.lifetime_value) || 0,
+            eventsCount: 0,
+            notes: row.notes || 'Telegram Mini App Client',
+            recentActivity: 'Active in Telegram Mini App',
+            telegramUserId: row.telegram_user_id || cleanId,
+            telegramUsername: row.telegram_username || undefined,
+            telegramFirstName: row.telegram_first_name || undefined,
+            telegramLastName: row.telegram_last_name || undefined,
+            telegramPhotoUrl: row.telegram_photo_url || undefined,
+            telegramLanguageCode: row.telegram_language_code || undefined,
+            telegramLinkedAt: row.telegram_linked_at ? row.telegram_linked_at.toISOString() : undefined,
+            createdAt: row.created_at ? row.created_at.toISOString() : new Date().toISOString(),
+          };
+        }
+      } catch (err) {
+        console.warn('PG findCustomerByTelegramId fallback:', err);
+      }
+    }
+    const found = (this.data.customers || []).find((c) => c.telegramUserId === cleanId);
+    return found || null;
+  }
+
+  public async findOrCreateTelegramCustomer(tgData: {
+    telegramUserId: string | number;
+    telegramUsername?: string;
+    telegramFirstName?: string;
+    telegramLastName?: string;
+    telegramPhotoUrl?: string;
+    telegramLanguageCode?: string;
+    email?: string;
+    phone?: string;
+  }): Promise<{ user: UserAccount; customer: CustomerCRM }> {
+    const tgId = String(tgData.telegramUserId).trim();
+    const fullName = [tgData.telegramFirstName, tgData.telegramLastName].filter(Boolean).join(' ').trim() ||
+      (tgData.telegramUsername ? `@${tgData.telegramUsername}` : 'Telegram Client');
+
+    // 1. Check if user already linked with this Telegram ID
+    let existingUser = await this.findUserByTelegramId(tgId);
+    let existingCust = await this.findCustomerByTelegramId(tgId);
+
+    // 2. If not found by Telegram ID, check if an email was provided to link existing account
+    if (!existingUser && tgData.email) {
+      existingUser = await this.findUserByEmail(tgData.email);
+    }
+
+    const now = new Date().toISOString();
+
+    if (existingUser) {
+      existingUser.telegramUserId = tgId;
+      if (tgData.telegramUsername) existingUser.telegramUsername = tgData.telegramUsername;
+      if (tgData.telegramFirstName) existingUser.telegramFirstName = tgData.telegramFirstName;
+      if (tgData.telegramLastName) existingUser.telegramLastName = tgData.telegramLastName;
+      if (tgData.telegramPhotoUrl) existingUser.telegramPhotoUrl = tgData.telegramPhotoUrl;
+      if (tgData.telegramLanguageCode) existingUser.telegramLanguageCode = tgData.telegramLanguageCode;
+      existingUser.telegramLinkedAt = existingUser.telegramLinkedAt || now;
+      existingUser.updatedAt = now;
+
+      if (!this.data.users) this.data.users = [];
+      const uIdx = this.data.users.findIndex((u) => u.id === existingUser!.id || u.email.toLowerCase() === existingUser!.email.toLowerCase());
+      if (uIdx >= 0) {
+        this.data.users[uIdx] = { ...this.data.users[uIdx], ...existingUser };
+      }
+
+      if (pgPool) {
+        try {
+          await pgPool.query(
+            `UPDATE users SET
+              telegram_user_id = $1,
+              telegram_username = COALESCE($2, telegram_username),
+              telegram_first_name = COALESCE($3, telegram_first_name),
+              telegram_last_name = COALESCE($4, telegram_last_name),
+              telegram_photo_url = COALESCE($5, telegram_photo_url),
+              telegram_language_code = COALESCE($6, telegram_language_code),
+              telegram_linked_at = COALESCE(telegram_linked_at, NOW()),
+              updated_at = NOW()
+             WHERE id = $7::uuid`,
+            [
+              tgId,
+              tgData.telegramUsername || null,
+              tgData.telegramFirstName || null,
+              tgData.telegramLastName || null,
+              tgData.telegramPhotoUrl || null,
+              tgData.telegramLanguageCode || null,
+              existingUser.id,
+            ]
+          );
+
+          await pgPool.query(
+            `UPDATE customers SET
+              telegram_user_id = $1,
+              telegram_username = COALESCE($2, telegram_username),
+              telegram_first_name = COALESCE($3, telegram_first_name),
+              telegram_last_name = COALESCE($4, telegram_last_name),
+              telegram_photo_url = COALESCE($5, telegram_photo_url),
+              telegram_language_code = COALESCE($6, telegram_language_code),
+              telegram_linked_at = COALESCE(telegram_linked_at, NOW()),
+              updated_at = NOW()
+             WHERE user_id = $7::uuid`,
+            [
+              tgId,
+              tgData.telegramUsername || null,
+              tgData.telegramFirstName || null,
+              tgData.telegramLastName || null,
+              tgData.telegramPhotoUrl || null,
+              tgData.telegramLanguageCode || null,
+              existingUser.id,
+            ]
+          );
+        } catch (err) {
+          console.warn('PG link telegram update error:', err);
+        }
+      }
+
+      if (!existingCust) {
+        existingCust = await this.findCustomerByTelegramId(tgId);
+      }
+      if (!existingCust) {
+        existingCust = {
+          id: `c-${existingUser.id}`,
+          userId: existingUser.id,
+          fullName: existingUser.fullName,
+          email: existingUser.email,
+          phone: existingUser.phone || tgData.phone || '+251 911 000 000',
+          city: 'Addis Ababa',
+          vipStatus: false,
+          lifetimeValue: 0,
+          eventsCount: 0,
+          notes: 'Linked Telegram Mini App Client',
+          recentActivity: 'Active on Telegram Mini App',
+          telegramUserId: tgId,
+          telegramUsername: tgData.telegramUsername,
+          telegramFirstName: tgData.telegramFirstName,
+          telegramLastName: tgData.telegramLastName,
+          telegramPhotoUrl: tgData.telegramPhotoUrl,
+          telegramLanguageCode: tgData.telegramLanguageCode,
+          telegramLinkedAt: now,
+          createdAt: now,
+        };
+      }
+
+      this.saveData(this.data);
+      const { password_hash, ...sanitized } = existingUser;
+      return { user: sanitized, customer: existingCust };
+    }
+
+    // 3. New User & Customer creation
+    const newUserId = crypto.randomUUID();
+    const newCustomerId = crypto.randomUUID();
+    const email = tgData.email?.trim().toLowerCase() || `tg_${tgId}@telegram.mekdidecor.com`;
+    const randomPw = crypto.randomBytes(16).toString('hex');
+    const passwordHash = bcrypt.hashSync(randomPw, 10);
+
+    const newUser: UserAccount & { password_hash: string } = {
+      id: newUserId,
+      email,
+      phone: tgData.phone || undefined,
+      password_hash: passwordHash,
+      fullName,
+      role: 'CUSTOMER',
+      avatarUrl: tgData.telegramPhotoUrl,
+      telegramUserId: tgId,
+      telegramUsername: tgData.telegramUsername,
+      telegramFirstName: tgData.telegramFirstName,
+      telegramLastName: tgData.telegramLastName,
+      telegramPhotoUrl: tgData.telegramPhotoUrl,
+      telegramLanguageCode: tgData.telegramLanguageCode,
+      telegramLinkedAt: now,
+      isActive: true,
+      emailVerifiedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    const newCustomer: CustomerCRM = {
+      id: newCustomerId,
+      userId: newUserId,
+      fullName,
+      email,
+      phone: tgData.phone || '+251 911 000 000',
+      city: 'Addis Ababa',
+      address: 'Telegram Client Portal',
+      vipStatus: false,
+      lifetimeValue: 0,
+      eventsCount: 0,
+      notes: `Joined via Telegram Mini App (@${tgData.telegramUsername || tgId})`,
+      recentActivity: 'Registered via Telegram Mini App',
+      telegramUserId: tgId,
+      telegramUsername: tgData.telegramUsername,
+      telegramFirstName: tgData.telegramFirstName,
+      telegramLastName: tgData.telegramLastName,
+      telegramPhotoUrl: tgData.telegramPhotoUrl,
+      telegramLanguageCode: tgData.telegramLanguageCode,
+      telegramLinkedAt: now,
+      createdAt: now,
+    };
+
+    if (!this.data.users) this.data.users = [];
+    this.data.users.push(newUser);
+
+    if (!this.data.customers) this.data.customers = [];
+    this.data.customers.push(newCustomer);
+
+    this.saveData(this.data);
+
+    if (pgPool) {
+      try {
+        await pgPool.query(
+          `INSERT INTO users (
+            id, email, phone, password_hash, full_name, role, avatar_url,
+            telegram_user_id, telegram_username, telegram_first_name, telegram_last_name,
+            telegram_photo_url, telegram_language_code, telegram_linked_at,
+            is_active, email_verified_at, created_at, updated_at
+          ) VALUES ($1::uuid, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, NOW(), true, NOW(), NOW(), NOW())
+          ON CONFLICT (email) DO UPDATE SET
+            telegram_user_id = EXCLUDED.telegram_user_id,
+            telegram_username = EXCLUDED.telegram_username,
+            telegram_photo_url = EXCLUDED.telegram_photo_url,
+            telegram_linked_at = NOW(),
+            updated_at = NOW()`,
+          [
+            newUserId,
+            email,
+            tgData.phone || null,
+            passwordHash,
+            fullName,
+            'CUSTOMER',
+            tgData.telegramPhotoUrl || null,
+            tgId,
+            tgData.telegramUsername || null,
+            tgData.telegramFirstName || null,
+            tgData.telegramLastName || null,
+            tgData.telegramPhotoUrl || null,
+            tgData.telegramLanguageCode || null,
+          ]
+        );
+
+        await pgPool.query(
+          `INSERT INTO customers (
+            id, user_id, city, address, notes, vip_status, lifetime_value,
+            telegram_user_id, telegram_username, telegram_first_name, telegram_last_name,
+            telegram_photo_url, telegram_language_code, telegram_linked_at,
+            created_at, updated_at
+          ) VALUES ($1::uuid, $2::uuid, $3, $4, $5, false, 0.00, $6, $7, $8, $9, $10, $11, NOW(), NOW(), NOW())
+          ON CONFLICT (telegram_user_id) DO UPDATE SET
+            telegram_username = EXCLUDED.telegram_username,
+            telegram_photo_url = EXCLUDED.telegram_photo_url,
+            updated_at = NOW()`,
+          [
+            newCustomerId,
+            newUserId,
+            'Addis Ababa',
+            'Telegram Client Portal',
+            `Joined via Telegram Mini App (@${tgData.telegramUsername || tgId})`,
+            tgId,
+            tgData.telegramUsername || null,
+            tgData.telegramFirstName || null,
+            tgData.telegramLastName || null,
+            tgData.telegramPhotoUrl || null,
+            tgData.telegramLanguageCode || null,
+          ]
+        );
+      } catch (err) {
+        console.warn('PG create telegram customer error:', err);
+      }
+    }
+
+    const { password_hash, ...sanitized } = newUser;
+    return { user: sanitized, customer: newCustomer };
   }
 
   public async createUser(payload: {

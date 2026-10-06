@@ -2417,6 +2417,27 @@
       "notes": "Graduation celebration at Imperial Hotel. Referred by Sheraton manager.",
       "recentActivity": "Submitted event request MD-REQ-2026-0044",
       "createdAt": "2026-10-05"
+    },
+    {
+      "id": "b4058c83-069f-4208-a3ff-2398c08a2c1f",
+      "userId": "8ec01332-eb4f-4c44-8b00-eaee833a52f5",
+      "fullName": "Sara Tekle",
+      "email": "tg_99887766@telegram.mekdidecor.com",
+      "phone": "+251 911 000 000",
+      "city": "Addis Ababa",
+      "address": "Telegram Client Portal",
+      "vipStatus": false,
+      "lifetimeValue": 0,
+      "eventsCount": 0,
+      "notes": "Joined via Telegram Mini App (@sara_t)",
+      "recentActivity": "Registered via Telegram Mini App",
+      "telegramUserId": "99887766",
+      "telegramUsername": "sara_t",
+      "telegramFirstName": "Sara",
+      "telegramLastName": "Tekle",
+      "telegramLanguageCode": "en",
+      "telegramLinkedAt": "2026-10-06T13:07:17.135Z",
+      "createdAt": "2026-10-06T13:07:17.135Z"
     }
   ],
   "savedInspirations": [
@@ -2459,6 +2480,23 @@
       "phoneVerifiedAt": null,
       "createdAt": "2026-10-05T20:23:27.616Z",
       "updatedAt": "2026-10-05T20:23:56.270Z"
+    },
+    {
+      "id": "8ec01332-eb4f-4c44-8b00-eaee833a52f5",
+      "email": "tg_99887766@telegram.mekdidecor.com",
+      "password_hash": "$2b$10$Q0soFqG4wDihoHU1YibaduX/ry7Vpz4EWLbNt6Exn3jt26fB3BCnu",
+      "fullName": "Sara Tekle",
+      "role": "CUSTOMER",
+      "telegramUserId": "99887766",
+      "telegramUsername": "sara_t",
+      "telegramFirstName": "Sara",
+      "telegramLastName": "Tekle",
+      "telegramLanguageCode": "en",
+      "telegramLinkedAt": "2026-10-06T13:07:17.135Z",
+      "isActive": true,
+      "emailVerifiedAt": "2026-10-06T13:07:17.135Z",
+      "createdAt": "2026-10-06T13:07:17.135Z",
+      "updatedAt": "2026-10-06T13:07:28.874Z"
     }
   ]
 }

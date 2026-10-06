@@ -224,6 +224,13 @@ export interface CustomerCRM {
   eventsCount: number;
   notes?: string;
   recentActivity: string;
+  telegramUserId?: string;
+  telegramUsername?: string;
+  telegramFirstName?: string;
+  telegramLastName?: string;
+  telegramPhotoUrl?: string;
+  telegramLanguageCode?: string;
+  telegramLinkedAt?: string;
   createdAt: string;
 }
 
@@ -256,6 +263,13 @@ export interface UserAccount {
   fullName: string;
   role: 'CUSTOMER' | 'ADMIN' | 'STAFF' | 'MANAGER';
   avatarUrl?: string;
+  telegramUserId?: string;
+  telegramUsername?: string;
+  telegramFirstName?: string;
+  telegramLastName?: string;
+  telegramPhotoUrl?: string;
+  telegramLanguageCode?: string;
+  telegramLinkedAt?: string;
   isActive: boolean;
   emailVerifiedAt?: string | null;
   phoneVerifiedAt?: string | null;
@@ -273,6 +287,8 @@ export interface AuthSession {
     fullName: string;
     phone?: string;
     role: string;
+    telegramUserId?: string;
+    telegramUsername?: string;
     emailVerifiedAt?: string | null;
   };
   token: string;

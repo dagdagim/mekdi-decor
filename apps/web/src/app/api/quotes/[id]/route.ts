@@ -35,6 +35,31 @@ export async function PATCH(
       );
     }
 
+    if (updated) {
+      // Proactively notify Telegram user if linked
+      try {
+        const { TelegramBotService } = await import('@/lib/telegram/bot');
+        const customer = (await db.getCustomers()).find(
+          (c) => c.id === updated.customerId || c.email?.toLowerCase() === updated.customerEmail?.toLowerCase()
+        );
+        if (customer?.telegramUserId) {
+          const actionText =
+            body.status === 'ACCEPTED'
+              ? '✨ Quote Accepted! Your decorative vision is confirmed.'
+              : body.status === 'REVISION_REQUESTED'
+              ? '📝 Change request received for your quote.'
+              : `Quote status updated: ${body.status}`;
+
+          TelegramBotService.sendNotification(customer.telegramUserId, {
+            title: '🌸 MEKDI DECOR QUOTE UPDATE',
+            body: `${actionText}\n\nQuote: ${updated.quoteNumber}\nTotal: ${Number(updated.totalAmount).toLocaleString()} ETB`,
+            buttonText: 'VIEW QUOTE DETAILS',
+            deepLinkParam: `quote_${updated.id}`,
+          }).catch(() => {});
+        }
+      } catch {}
+    }
+
     return NextResponse.json({
       success: true,
       data: updated,

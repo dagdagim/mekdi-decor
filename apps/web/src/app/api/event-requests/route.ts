@@ -131,6 +131,20 @@ export async function POST(request: Request) {
       specialNotes: body.specialNotes || '',
     });
 
+    // Dispatch Telegram confirmation if client has telegramUserId
+    try {
+      const tgUserId = body.telegramUserId;
+      if (tgUserId) {
+        const { TelegramBotService } = await import('@/lib/telegram/bot');
+        TelegramBotService.sendNotification(tgUserId, {
+          title: '🌸 MEKDI DECOR — VISION RECEIVED',
+          body: `Your event vision has been received!\n\n📋 Request: ${created.requestNumber}\n🎉 Event: ${created.eventType} on ${created.eventDate}\n👥 Guests: ${created.guestCount}\n\nOur design directors will craft a bespoke decorative quotation for you shortly.`,
+          buttonText: 'TRACK MY EVENT',
+          deepLinkParam: `event_${created.id}`,
+        }).catch(() => {});
+      }
+    } catch {}
+
     return NextResponse.json(
       {
         success: true,
