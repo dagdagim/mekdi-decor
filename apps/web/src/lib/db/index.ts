@@ -56,12 +56,18 @@ interface DatabaseSchema {
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'database.json');
 
-// Initialize PostgreSQL pool if DATABASE_URL is configured
+// Initialize PostgreSQL pool if DATABASE_URL or Vercel Postgres is configured
+const dbConnectionUrl =
+  process.env.DATABASE_URL ||
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.STORAGE_URL;
+
 let pgPool: Pool | null = null;
-if (process.env.DATABASE_URL) {
+if (dbConnectionUrl) {
   try {
     pgPool = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: dbConnectionUrl,
       ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
       connectionTimeoutMillis: 3000,
     });
