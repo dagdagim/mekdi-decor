@@ -29,16 +29,20 @@ export class TelegramBotService {
   }
 
   public static getMiniAppUrl(param?: string): string {
-    const baseUrl =
-      process.env.TELEGRAM_MINI_APP_URL ||
-      (process.env.NEXT_PUBLIC_APP_URL
-        ? `${process.env.NEXT_PUBLIC_APP_URL}/telegram`
-        : 'https://mekdi-decor.vercel.app/telegram');
+    let baseUrl = process.env.TELEGRAM_MINI_APP_URL || 'https://mekdi-decor.vercel.app/telegram';
+    if (!baseUrl.startsWith('https://')) {
+      baseUrl = 'https://mekdi-decor.vercel.app/telegram';
+    }
 
-    if (!param) return baseUrl;
-    const url = new URL(baseUrl);
-    url.searchParams.set('startapp', param);
-    return url.toString();
+    try {
+      const url = new URL(baseUrl);
+      if (param) {
+        url.searchParams.set('startapp', param);
+      }
+      return url.toString();
+    } catch {
+      return param ? `https://mekdi-decor.vercel.app/telegram?startapp=${param}` : 'https://mekdi-decor.vercel.app/telegram';
+    }
   }
 
   /**
@@ -56,21 +60,38 @@ export class TelegramBotService {
     }
 
     try {
+      const payload: any = {
+        chat_id: chatId,
+        text,
+        disable_web_page_preview: options.disable_web_page_preview ?? false,
+      };
+      if (options.parse_mode) payload.parse_mode = options.parse_mode;
+      if (options.reply_markup) payload.reply_markup = options.reply_markup;
+
       const response = await fetch(`${TELEGRAM_API_BASE}${token}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text,
-          parse_mode: options.parse_mode || 'Markdown',
-          reply_markup: options.reply_markup,
-          disable_web_page_preview: options.disable_web_page_preview ?? false,
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
       if (!data.ok) {
-        console.error('[TELEGRAM BOT] API error:', data.description);
+        console.error('[TELEGRAM BOT] API error:', data.description, 'Payload:', JSON.stringify(payload));
+
+        // Robust fallback: if message with keyboard or markdown failed, retry sending plain text
+        try {
+          const fallbackRes = await fetch(`${TELEGRAM_API_BASE}${token}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: text.replace(/[*_`\[\]]/g, ''),
+            }),
+          });
+          const fbData = await fallbackRes.json();
+          if (fbData.ok) return { success: true, result: fbData.result };
+        } catch {}
+
         return { success: false, error: data.description };
       }
 

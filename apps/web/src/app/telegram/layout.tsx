@@ -27,7 +27,7 @@ export default function TelegramLayout({
         src="https://telegram.org/js/telegram-web-app.js"
         strategy="beforeInteractive"
       />
-      <div className="telegram-mini-app min-h-screen bg-[#140F11] text-[#FAF6F0] selection:bg-[#D4AF37] selection:text-[#1C1917] antialiased">
+      <div className="telegram-mini-app min-h-screen bg-cream-50 text-charcoal-900 selection:bg-gold-500 selection:text-burgundy-950 antialiased font-sans">
         {children}
       </div>
     </>
