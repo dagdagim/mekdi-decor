@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Logo } from '@/components/ui/Logo';
-import { Mail, Lock, ArrowRight, AlertCircle, Sparkles, ShieldCheck, User } from 'lucide-react';
+import { Mail, Lock, ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function LoginPage() {
@@ -61,11 +61,6 @@ export default function LoginPage() {
     }
   };
 
-  const handleQuickFill = (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-  };
-
   return (
     <div className="min-h-screen bg-cream-50 py-16 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-3xl border-2 border-gold-400/30 shadow-elevated">
@@ -82,31 +77,6 @@ export default function LoginPage() {
           <p className="mt-2 text-xs text-charcoal-600 font-light">
             Access your event plans, quotations, and live moodboard designs.
           </p>
-        </div>
-
-        {/* Quick Fill Demo Accounts */}
-        <div className="p-3 rounded-2xl bg-cream-100/70 border border-cream-200">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-charcoal-500 block mb-2 text-center">
-            Demo Credentials
-          </span>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => handleQuickFill('admin@mekdidecor.com', 'admin123')}
-              className="flex-1 py-1.5 px-2.5 rounded-xl bg-burgundy-900 text-gold-300 text-[11px] font-semibold flex items-center justify-center gap-1 hover:bg-burgundy-800 transition-colors"
-            >
-              <ShieldCheck className="w-3 h-3" />
-              <span>Admin Portal</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickFill('sara.t@example.com', 'password')}
-              className="flex-1 py-1.5 px-2.5 rounded-xl bg-white border border-cream-300 text-charcoal-800 text-[11px] font-semibold flex items-center justify-center gap-1 hover:bg-cream-200 transition-colors"
-            >
-              <User className="w-3 h-3 text-gold-600" />
-              <span>Client Demo</span>
-            </button>
-          </div>
         </div>
 
         {/* Error Alert */}

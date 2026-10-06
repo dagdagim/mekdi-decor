@@ -33,11 +33,11 @@ export const Footer: React.FC = () => {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://t.me"
+                href="https://t.me/MekdiDecor_bot"
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-burgundy-900 border border-gold-500/30 flex items-center justify-center text-gold-300 hover:text-white hover:bg-burgundy-800 transition-colors"
-                aria-label="Telegram"
+                aria-label="Telegram Bot"
               >
                 <Send className="w-4 h-4" />
               </a>

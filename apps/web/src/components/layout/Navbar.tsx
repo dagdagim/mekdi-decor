@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Logo } from '../ui/Logo';
-import { Menu, X, Phone, Calendar, Smartphone, ShieldCheck, User, LogOut, Sparkles } from 'lucide-react';
+import { Menu, X, Phone, Calendar, Smartphone, ShieldCheck, User, LogOut, Sparkles, Mail, Send } from 'lucide-react';
 
 interface CurrentUser {
   id: string;
@@ -87,22 +87,24 @@ export const Navbar: React.FC = () => {
             <span>Addis Ababa • Hawassa • Bishoftu • Adama</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link
-              href="/admin"
-              className="flex items-center gap-1.5 hover:text-white transition-colors text-gold-300 font-medium"
+          <div className="flex items-center gap-4 text-gold-300">
+            <a
+              href="mailto:contact@mekdidecor.com"
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
             >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              Admin Portal
-            </Link>
+              <Mail className="w-3.5 h-3.5 text-gold-400" />
+              <span>contact@mekdidecor.com</span>
+            </a>
             <span className="text-gold-500/40">•</span>
-            <Link
-              href="/mobile-preview"
-              className="flex items-center gap-1.5 hover:text-white transition-colors text-gold-300 font-medium"
+            <a
+              href="https://t.me/MekdiDecor_bot"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 hover:text-white transition-colors font-medium"
             >
-              <Smartphone className="w-3.5 h-3.5" />
-              Customer Mobile App
-            </Link>
+              <Send className="w-3.5 h-3.5 text-gold-400" />
+              <span>@MekdiDecor_bot</span>
+            </a>
           </div>
         </div>
       </div>
@@ -311,21 +313,28 @@ export const Navbar: React.FC = () => {
                 Plan Your Event
               </Link>
 
-              <div className="grid grid-cols-2 gap-2 text-center text-xs">
-                <Link
-                  href="/admin"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 rounded-lg bg-cream-200 text-burgundy-900 font-medium"
-                >
-                  Admin Portal
-                </Link>
-                <Link
-                  href="/mobile-preview"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 rounded-lg bg-cream-200 text-burgundy-900 font-medium"
-                >
-                  Mobile App
-                </Link>
+              <div className="pt-2 border-t border-cream-200 flex flex-col gap-2 text-center text-xs">
+                {currentUser?.role === 'ADMIN' ? (
+                  <Link
+                    href="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-2.5 rounded-xl bg-burgundy-900 text-gold-300 font-semibold flex items-center justify-center gap-1.5"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Admin Dashboard</span>
+                  </Link>
+                ) : (
+                  <a
+                    href="https://t.me/MekdiDecor_bot"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="py-2.5 rounded-xl bg-burgundy-900 text-gold-300 font-semibold flex items-center justify-center gap-1.5"
+                  >
+                    <Send className="w-4 h-4 text-gold-400" />
+                    <span>Open in Telegram Bot</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

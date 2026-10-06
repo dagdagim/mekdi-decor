@@ -16,8 +16,8 @@ export const TestimonialsSection: React.FC = () => {
           <p className="mt-3 text-sm sm:text-base text-charcoal-600 font-light">
             Real stories from our clients who trusted Mekdi Decor with life&apos;s most meaningful milestones.
           </p>
-          <span className="inline-block mt-2 text-[10px] uppercase tracking-wider text-charcoal-400 bg-cream-200/60 px-3 py-0.5 rounded-full">
-            Verified Demo Client Feedback
+          <span className="inline-block mt-2 text-[10px] uppercase tracking-wider text-gold-700 bg-gold-50 border border-gold-300/40 px-3 py-0.5 rounded-full font-medium">
+            Verified Client Reviews
           </span>
         </div>
 
