@@ -478,10 +478,10 @@ export default function TelegramMiniAppPage() {
       <div className="bg-burgundy-950 text-gold-200/90 text-[11px] py-1.5 px-4 border-b border-gold-500/20 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Phone className="w-3 h-3 text-gold-400" />
-          <span>Hotline: +251 911 234 567</span>
+          <span>Hotline: 0967698460 / 0900454238</span>
         </div>
         <div className="flex items-center gap-1.5 text-gold-300 font-medium">
-          <span>Addis Ababa &bull; Hawassa</span>
+          <a href="https://t.me/mekdidecor19" target="_blank" rel="noreferrer" className="hover:underline">t.me/mekdidecor19</a>
         </div>
       </div>
 
@@ -502,10 +502,10 @@ export default function TelegramMiniAppPage() {
           </button>
 
           <a
-            href="tel:+251911234567"
+            href="tel:+251967698460"
             onClick={() => triggerHaptic('light')}
             className="w-8 h-8 rounded-full bg-cream-200 border border-gold-500/30 flex items-center justify-center text-burgundy-800 hover:bg-gold-500 hover:text-white transition-colors"
-            title="Call Concierge"
+            title="Call 0967698460"
           >
             <Phone className="w-3.5 h-3.5" />
           </a>
@@ -1015,11 +1015,11 @@ export default function TelegramMiniAppPage() {
                     </button>
 
                     <a
-                      href="tel:+251911234567"
+                      href="tel:+251967698460"
                       className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase bg-burgundy-900 text-cream-50 hover:bg-burgundy-800 border border-gold-500/30 transition-all flex items-center justify-center gap-1.5"
                     >
                       <Phone className="w-3.5 h-3.5 text-gold-400" />
-                      <span>+251 911 234 567</span>
+                      <span>+251 967 698 460</span>
                     </a>
                   </div>
                 </div>
@@ -1424,14 +1424,64 @@ export default function TelegramMiniAppPage() {
               <h3 className="font-editorial text-base font-bold text-charcoal-900">Atelier Studio</h3>
               <div className="bg-white rounded-2xl border border-cream-200 divide-y divide-cream-100 shadow-card">
                 <a
-                  href="tel:+251911234567"
+                  href="tel:+251967698460"
                   className="p-4 flex items-center justify-between hover:bg-cream-50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-gold-600" />
                     <div>
-                      <span className="block text-xs font-semibold text-charcoal-900">Direct Hotline</span>
-                      <span className="block text-[11px] text-charcoal-500">+251 911 234 567</span>
+                      <span className="block text-xs font-semibold text-charcoal-900">Direct Hotline 1</span>
+                      <span className="block text-[11px] text-charcoal-500">+251 967 698 460 (0967698460)</span>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gold-600" />
+                </a>
+
+                <a
+                  href="tel:+251900454238"
+                  className="p-4 flex items-center justify-between hover:bg-cream-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-gold-600" />
+                    <div>
+                      <span className="block text-xs font-semibold text-charcoal-900">Direct Hotline 2</span>
+                      <span className="block text-[11px] text-charcoal-500">+251 900 454 238 (0900454238)</span>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gold-600" />
+                </a>
+
+                <a
+                  href="https://t.me/mekdidecor19"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-4 flex items-center justify-between hover:bg-cream-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <Send className="w-4 h-4 text-gold-600" />
+                    <div>
+                      <span className="block text-xs font-semibold text-charcoal-900">Official Telegram Channel</span>
+                      <span className="block text-[11px] text-charcoal-500">t.me/mekdidecor19</span>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gold-600" />
+                </a>
+
+                <a
+                  href="https://www.tiktok.com/@mekdi.decor3"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-4 flex items-center justify-between hover:bg-cream-50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-4 h-4 flex items-center justify-center text-gold-600">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.68a6.34 6.34 0 0 0 6.34 6.34c3.5 0 6.34-2.84 6.34-6.34V9.08a8.16 8.16 0 0 0 4.91 1.63v-3.5a4.85 4.85 0 0 1-1-.52z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="block text-xs font-semibold text-charcoal-900">TikTok Official</span>
+                      <span className="block text-[11px] text-charcoal-500">@mekdi.decor3 (Mekdi decor)</span>
                     </div>
                   </div>
                   <ChevronRight className="w-4 h-4 text-gold-600" />
@@ -1454,9 +1504,9 @@ export default function TelegramMiniAppPage() {
                   className="p-4 flex items-center justify-between hover:bg-cream-50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <Send className="w-4 h-4 text-gold-600" />
+                    <span className="text-[10px] px-1 rounded bg-gold-500/20 text-gold-700 font-bold">BOT</span>
                     <div>
-                      <span className="block text-xs font-semibold text-charcoal-900">Official Telegram Bot</span>
+                      <span className="block text-xs font-semibold text-charcoal-900">Telegram Mini App Bot</span>
                       <span className="block text-[11px] text-charcoal-500">@MekdiDecor_bot</span>
                     </div>
                   </div>

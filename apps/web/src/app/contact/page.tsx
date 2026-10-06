@@ -66,9 +66,60 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-charcoal-900 mb-0.5">Direct Line & Telegram</strong>
-                    <a href="tel:+251911234567" className="hover:text-burgundy-900">
-                      +251 911 234 567
+                    <strong className="block text-charcoal-900 mb-0.5">Direct Lines</strong>
+                    <div className="flex flex-col gap-0.5">
+                      <a href="tel:+251967698460" className="hover:text-burgundy-900 font-medium">
+                        +251 967 698 460 (0967698460)
+                      </a>
+                      <a href="tel:+251900454238" className="hover:text-burgundy-900 font-medium">
+                        +251 900 454 238 (0900454238)
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Send className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="block text-charcoal-900 mb-0.5">Telegram</strong>
+                    <div className="flex flex-col gap-1">
+                      <a
+                        href="https://t.me/mekdidecor19"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:text-burgundy-900 text-burgundy-900 font-medium inline-flex items-center gap-1.5"
+                      >
+                        <span>Official Channel:</span>
+                        <span className="text-gold-700 underline">t.me/mekdidecor19</span>
+                      </a>
+                      <a
+                        href="https://t.me/MekdiDecor_bot"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:text-burgundy-900 text-charcoal-700 inline-flex items-center gap-1.5"
+                      >
+                        <span>Mini App Bot:</span>
+                        <span className="text-gold-700 underline">@MekdiDecor_bot</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-5 h-5 flex items-center justify-center text-gold-600 shrink-0 mt-0.5">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.42a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.68a6.34 6.34 0 0 0 6.34 6.34c3.5 0 6.34-2.84 6.34-6.34V9.08a8.16 8.16 0 0 0 4.91 1.63v-3.5a4.85 4.85 0 0 1-1-.52z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong className="block text-charcoal-900 mb-0.5">TikTok Official</strong>
+                    <a
+                      href="https://www.tiktok.com/@mekdi.decor3"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-burgundy-900 text-gold-700 underline font-medium"
+                    >
+                      @mekdi.decor3 (Mekdi decor)
                     </a>
                   </div>
                 </div>

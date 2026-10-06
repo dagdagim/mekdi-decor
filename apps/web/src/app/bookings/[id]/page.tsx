@@ -455,13 +455,13 @@ export default function BookingDetailPage({ params }: BookingDetailPageProps) {
               </div>
               <div>
                 <span className="font-bold text-charcoal-900 block">Lead Designer: Mekdes Tadesse</span>
-                <span className="text-charcoal-500 font-light text-[11px]">Direct Concierge Hotline: +251 911 234 567</span>
+                <span className="text-charcoal-500 font-light text-[11px]">Direct Concierge Hotline: +251 967 698 460 / +251 900 454 238</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
               <a
-                href="tel:+251911234567"
+                href="tel:+251967698460"
                 className="px-4 py-2 rounded-full text-xs font-semibold bg-white border border-cream-300 text-charcoal-700 hover:bg-cream-100 transition-colors inline-flex items-center gap-1.5"
               >
                 <Phone className="w-3.5 h-3.5 text-burgundy-900" />

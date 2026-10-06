@@ -570,7 +570,7 @@ function CustomerBookingsContent() {
                             )}
 
                             <a
-                              href="tel:+251911234567"
+                              href="tel:+251967698460"
                               className="px-4 py-2.5 rounded-full text-xs font-semibold bg-white border border-cream-300 text-charcoal-700 hover:bg-cream-100 transition-colors"
                             >
                               Call Concierge
@@ -582,7 +582,7 @@ function CustomerBookingsContent() {
                           <span>
                             Status: Our team is evaluating venue dimensions and flower availability. We typically reply within 24 hours.
                           </span>
-                          <a href="tel:+251911234567" className="font-semibold text-burgundy-900 hover:underline shrink-0 pl-2">
+                          <a href="tel:+251967698460" className="font-semibold text-burgundy-900 hover:underline shrink-0 pl-2">
                             Need Urgent Booking?
                           </a>
                         </div>

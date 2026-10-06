@@ -33,8 +33,10 @@ export async function POST(request: Request) {
         await TelegramBotService.sendMessage(
           chatId,
           `🌸 *MEKDI DECOR CONCIERGE*\n\n` +
-            `📞 *Direct Line:* +251 911 234 567\n` +
+            `📞 *Direct Hotline:* +251 967 698 460 / +251 900 454 238\n` +
             `📍 *Atelier:* Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa\n` +
+            `📱 *Telegram Channel:* https://t.me/mekdidecor19\n` +
+            `🎵 *TikTok:* https://www.tiktok.com/@mekdi.decor3\n` +
             `✉️ *Email:* contact@mekdidecor.com\n` +
             `🌐 *Website:* https://mekdi-decor.vercel.app\n\n` +
             `_Our event designers are available Monday – Saturday, 8:30 AM – 7:00 PM._`
@@ -142,8 +144,10 @@ export async function POST(request: Request) {
       await TelegramBotService.sendMessage(
         chatId,
         `🌸 *MEKDI DECOR CONCIERGE*\n\n` +
-          `📞 *Direct Line:* +251 911 234 567\n` +
+          `📞 *Direct Hotline:* +251 967 698 460 / +251 900 454 238\n` +
           `📍 *Atelier:* Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa\n` +
+          `📱 *Telegram Channel:* https://t.me/mekdidecor19\n` +
+          `🎵 *TikTok:* https://www.tiktok.com/@mekdi.decor3\n` +
           `✉️ *Email:* contact@mekdidecor.com\n` +
           `🌐 *Website:* https://mekdi-decor.vercel.app\n\n` +
           `_We transform extraordinary venues into unforgettable memories._`,

@@ -134,7 +134,7 @@ export async function sendVerificationEmail({
               </p>
               <p style="margin: 0;">
                 Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
-                Concierge: +251 911 234 567 &bull; contact@mekdidecor.com
+                Concierge: +251 967 698 460 / +251 900 454 238 &bull; contact@mekdidecor.com
               </p>
             </td>
           </tr>
@@ -293,7 +293,7 @@ export async function sendPaymentConfirmationEmail({
               </p>
               <p style="margin: 0;">
                 Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
-                Direct Concierge Hotline: +251 911 234 567
+                Direct Concierge Hotline: +251 967 698 460 / +251 900 454 238
               </p>
             </td>
           </tr>
@@ -310,7 +310,7 @@ export async function sendPaymentConfirmationEmail({
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: toEmail,
       subject: `Deposit Confirmed: ${formattedAmount} for ${eventTitle} — Mekdi Decor`,
-      text: `Thank you ${customerName}!\n\nWe have received your deposit of ${formattedAmount} (${provider} Ref: ${transactionRef}) for ${eventTitle}.\nYour event date is locked in our production calendar.\n\nMekdi Decor Concierge\n+251 911 234 567`,
+      text: `Thank you ${customerName}!\n\nWe have received your deposit of ${formattedAmount} (${provider} Ref: ${transactionRef}) for ${eventTitle}.\nYour event date is locked in our production calendar.\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,
       html: htmlContent,
     });
 
@@ -434,7 +434,7 @@ export async function sendQuoteOfferEmail({
               </div>
 
               <p style="font-size: 13px; color: #57534E; line-height: 1.6; margin: 24px 0 0 0;">
-                If you have questions or wish to customize specific floral arrangements, feel free to reply directly to this email or contact our concierge at <a href="tel:+251911234567" style="color: #5B1424; font-weight: 600;">+251 911 234 567</a>.
+                If you have questions or wish to customize specific floral arrangements, feel free to reply directly to this email or contact our concierge at <a href="tel:+251967698460" style="color: #5B1424; font-weight: 600;">+251 967 698 460</a> / <a href="tel:+251900454238" style="color: #5B1424; font-weight: 600;">+251 900 454 238</a>.
               </p>
             </td>
           </tr>
@@ -447,7 +447,7 @@ export async function sendQuoteOfferEmail({
               </p>
               <p style="margin: 0;">
                 Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
-                contact@mekdidecor.com &bull; +251 911 234 567
+                contact@mekdidecor.com &bull; +251 967 698 460 / +251 900 454 238
               </p>
             </td>
           </tr>
@@ -464,7 +464,7 @@ export async function sendQuoteOfferEmail({
       from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
       to: toEmail,
       subject: `Your Decoration Proposal: ${quoteNumber} (${formattedDeposit} deposit) — Mekdi Decor`,
-      text: `Dear ${customerName},\n\nYour official decoration proposal for ${eventTitle} is ready.\n\nTotal Investment: ${formattedTotal}\n50% Required Deposit: ${formattedDeposit}\n\nReview your proposal and pay deposit online here:\n${quotePaymentUrl}\n\nMekdi Decor Concierge\n+251 911 234 567`,
+      text: `Dear ${customerName},\n\nYour official decoration proposal for ${eventTitle} is ready.\n\nTotal Investment: ${formattedTotal}\n50% Required Deposit: ${formattedDeposit}\n\nReview your proposal and pay deposit online here:\n${quotePaymentUrl}\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,
       html: htmlContent,
     });
 

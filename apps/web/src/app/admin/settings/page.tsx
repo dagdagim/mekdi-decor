@@ -62,7 +62,7 @@ export default function AdminSettingsPage() {
               <label className="block text-charcoal-700 font-semibold mb-1">Primary Support Phone</label>
               <input
                 type="text"
-                defaultValue="+251 911 234 567"
+                defaultValue="+251 967 698 460 / +251 900 454 238"
                 className="w-full px-4 py-2.5 rounded-xl border border-cream-300 bg-cream-50 text-charcoal-900"
               />
             </div>

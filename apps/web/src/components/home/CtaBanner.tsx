@@ -39,11 +39,11 @@ export const CtaBanner: React.FC = () => {
               </Link>
 
               <a
-                href="tel:+251911234567"
+                href="tel:+251967698460"
                 className="w-full sm:w-auto px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-burgundy-900 text-cream-50 hover:bg-burgundy-800 border border-gold-500/30 transition-all flex items-center justify-center gap-2"
               >
                 <Phone className="w-4 h-4 text-gold-400" />
-                <span>+251 911 234 567</span>
+                <span>+251 967 698 460</span>
               </a>
             </div>
           </div>
