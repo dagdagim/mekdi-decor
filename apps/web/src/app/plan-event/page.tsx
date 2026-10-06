@@ -467,9 +467,27 @@ function PlanEventWizard() {
                     ))}
                   </div>
 
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <span className="text-[11px] text-charcoal-500 font-medium">Quick Location:</span>
+                    <button
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, venueName: prev.venueName ? `${prev.venueName}, Hawassa` : 'Hawassa' }))}
+                      className="px-2.5 py-1 rounded-full text-[11px] bg-cream-100 border border-gold-400/40 text-burgundy-900 font-semibold hover:bg-gold-50"
+                    >
+                      📍 Hawassa
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData((prev) => ({ ...prev, venueName: prev.venueName ? `${prev.venueName}, Shashemene` : 'Shashemene' }))}
+                      className="px-2.5 py-1 rounded-full text-[11px] bg-cream-100 border border-gold-400/40 text-burgundy-900 font-semibold hover:bg-gold-50"
+                    >
+                      📍 Shashemene
+                    </button>
+                  </div>
+
                   <input
                     type="text"
-                    placeholder="Venue name or city (e.g. Skyline Event Hall, Hawassa or Sheraton Addis)"
+                    placeholder="Venue name, resort, or hall (e.g. Haile Resort Hawassa, Shashemene Palace Hall, or Private Residence)"
                     value={formData.venueName}
                     onChange={(e) => setFormData({ ...formData, venueName: e.target.value })}
                     className="w-full px-4 py-3 rounded-2xl border border-cream-300 bg-cream-50 text-xs font-medium text-charcoal-900 focus:outline-none focus:border-burgundy-800"

@@ -58,8 +58,8 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-gold-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="block text-charcoal-900 mb-0.5">Location</strong>
-                    <span>Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia</span>
+                    <strong className="block text-charcoal-900 mb-0.5">Studio Location</strong>
+                    <span>Hawassa, Trufat Werku Tower, Ground Floor, Room 217, Ethiopia</span>
                   </div>
                 </div>
 
@@ -145,9 +145,9 @@ export default function ContactPage() {
 
               <div className="p-4 rounded-2xl bg-cream-100/70 border border-cream-200 text-xs text-charcoal-600">
                 <span className="font-semibold text-burgundy-900 block mb-1">
-                  Destination Event Inquiries
+                  Hawassa & Shashemene Service Availability
                 </span>
-                We regularly produce luxury weddings in Hawassa, Bishoftu resorts, Adama, and Bahir Dar. Early booking is advised.
+                We regularly produce luxury weddings, graduations, and celebrations across Hawassa, Shashemene, and surrounding regions. In-person design consultations available at Trufat Werku Tower, Ground Floor, Room 217.
               </div>
             </div>
           </div>

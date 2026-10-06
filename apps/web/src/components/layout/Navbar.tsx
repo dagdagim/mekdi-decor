@@ -88,7 +88,8 @@ export const Navbar: React.FC = () => {
               <span>0900454238</span>
             </a>
             <span className="text-gold-500/40">|</span>
-            <span className="text-gold-200/70">Addis Ababa • Hawassa • Bishoftu • Adama</span>
+            <span className="text-gold-200/90 font-medium">Hawassa • Shashemene</span>
+            <span className="text-gold-400/80 text-[11px] hidden xl:inline">(Trufat Werku Tower, Room 217)</span>
           </div>
 
           <div className="flex items-center gap-4 text-gold-300">

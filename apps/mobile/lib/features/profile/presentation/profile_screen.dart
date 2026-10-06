@@ -165,7 +165,7 @@ class MobileProfileScreen extends ConsumerWidget {
               ),
               _buildSettingTile(
                 icon: Icons.support_agent_outlined,
-                title: 'Addis Ababa Atelier Concierge',
+                title: 'Hawassa & Shashemene Atelier Concierge',
                 subtitle: '+251 967 698 460 / +251 900 454 238',
                 onTap: () => context.go('/messages'),
               ),

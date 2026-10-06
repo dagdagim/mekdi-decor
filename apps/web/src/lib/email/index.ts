@@ -133,7 +133,7 @@ export async function sendVerificationEmail({
                 MEKDI DECOR LUXURY EVENT ATELIER
               </p>
               <p style="margin: 0;">
-                Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
+                Hawassa, Trufat Werku Tower, Ground Floor, Room 217, Ethiopia<br>
                 Concierge: +251 967 698 460 / +251 900 454 238 &bull; contact@mekdidecor.com
               </p>
             </td>
@@ -292,7 +292,7 @@ export async function sendPaymentConfirmationEmail({
                 MEKDI DECOR PLC
               </p>
               <p style="margin: 0;">
-                Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
+                Hawassa, Trufat Werku Tower, Ground Floor, Room 217, Ethiopia<br>
                 Direct Concierge Hotline: +251 967 698 460 / +251 900 454 238
               </p>
             </td>
@@ -446,7 +446,7 @@ export async function sendQuoteOfferEmail({
                 MEKDI DECOR PLC &bull; Making Moments Unforgettable
               </p>
               <p style="margin: 0;">
-                Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa, Ethiopia<br>
+                Hawassa, Trufat Werku Tower, Ground Floor, Room 217, Ethiopia<br>
                 contact@mekdidecor.com &bull; +251 967 698 460 / +251 900 454 238
               </p>
             </td>

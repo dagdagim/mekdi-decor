@@ -144,7 +144,7 @@ export const PackagesSection: React.FC = () => {
         </div>
 
         <p className="text-center text-xs text-charcoal-500 mt-10">
-          * Final pricing includes setup, logistics, and on-site event standby. Custom venue permits or travel beyond Addis Ababa are quoted transparently.
+          * Final pricing includes complete setup, logistics, and on-site standby in Hawassa and Shashemene. Custom destination venue requirements are quoted transparently.
         </p>
       </div>
     </section>

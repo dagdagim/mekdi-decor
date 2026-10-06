@@ -480,7 +480,9 @@ export default function TelegramMiniAppPage() {
           <Phone className="w-3 h-3 text-gold-400" />
           <span>Hotline: 0967698460 / 0900454238</span>
         </div>
-        <div className="flex items-center gap-1.5 text-gold-300 font-medium">
+        <div className="flex items-center gap-1.5 text-gold-300 font-medium text-[10px]">
+          <span>Hawassa • Shashemene</span>
+          <span className="text-gold-500/50">•</span>
           <a href="https://t.me/mekdidecor19" target="_blank" rel="noreferrer" className="hover:underline">t.me/mekdidecor19</a>
         </div>
       </div>
@@ -749,7 +751,7 @@ export default function TelegramMiniAppPage() {
                   Our Craft &amp; Disciplines
                 </h2>
                 <p className="mt-2 text-xs text-charcoal-600 font-light">
-                  Every celebration is customized by our senior master designers in Addis Ababa.
+                  Every celebration is customized by our senior master designers in Hawassa &amp; Shashemene.
                 </p>
               </div>
 
@@ -1492,7 +1494,7 @@ export default function TelegramMiniAppPage() {
                   <div>
                     <span className="block text-xs font-semibold text-charcoal-900">Design Studio</span>
                     <span className="block text-[11px] text-charcoal-500 leading-tight">
-                      Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa
+                      Hawassa, Trufat Werku Tower, Ground Floor, Room 217
                     </span>
                   </div>
                 </div>

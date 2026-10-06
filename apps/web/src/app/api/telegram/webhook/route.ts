@@ -34,7 +34,8 @@ export async function POST(request: Request) {
           chatId,
           `🌸 *MEKDI DECOR CONCIERGE*\n\n` +
             `📞 *Direct Hotline:* +251 967 698 460 / +251 900 454 238\n` +
-            `📍 *Atelier:* Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa\n` +
+            `📍 *Atelier:* Hawassa, Trufat Werku Tower, Ground Floor, Room 217\n` +
+            `🌍 *Serving:* Hawassa, Shashemene & destination events across Ethiopia\n` +
             `📱 *Telegram Channel:* https://t.me/mekdidecor19\n` +
             `🎵 *TikTok:* https://www.tiktok.com/@mekdi.decor3\n` +
             `✉️ *Email:* contact@mekdidecor.com\n` +
@@ -145,7 +146,8 @@ export async function POST(request: Request) {
         chatId,
         `🌸 *MEKDI DECOR CONCIERGE*\n\n` +
           `📞 *Direct Hotline:* +251 967 698 460 / +251 900 454 238\n` +
-          `📍 *Atelier:* Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa\n` +
+          `📍 *Atelier:* Hawassa, Trufat Werku Tower, Ground Floor, Room 217\n` +
+          `🌍 *Serving:* Hawassa, Shashemene & surrounding regions\n` +
           `📱 *Telegram Channel:* https://t.me/mekdidecor19\n` +
           `🎵 *TikTok:* https://www.tiktok.com/@mekdi.decor3\n` +
           `✉️ *Email:* contact@mekdidecor.com\n` +

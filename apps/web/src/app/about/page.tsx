@@ -53,7 +53,7 @@ export default function AboutPage() {
               &ldquo;We transform empty rooms into living memories.&rdquo;
             </h2>
             <p className="text-sm text-charcoal-700 leading-relaxed font-light">
-              Mekdi Decor was born from a passion for botanical architecture, emotional light, and the sacred celebratory culture of Ethiopia. Over the past eight years, our team has grown from designing intimate family gatherings in Addis Ababa to orchestrating monumental 500+ guest royal weddings and state galas.
+              Mekdi Decor was born from a passion for botanical architecture, emotional light, and the sacred celebratory culture of Ethiopia. Based at Trufat Werku Tower in Hawassa, our team orchestrates monumental 500+ guest royal weddings, graduations, and state celebrations across Hawassa, Shashemene, and nationwide destination events.
             </p>
             <p className="text-sm text-charcoal-700 leading-relaxed font-light">
               We reject the generic plastic templates and repetitive setups common in standard banquet halls. Every wedding, graduation, and birthday we curate is treated as a bespoke couture commission.

@@ -167,7 +167,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-xs text-cream-200/80">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-                <span>Bole Medhanialem, Luxury Design Center 4th Floor, Addis Ababa</span>
+                <span>Hawassa, Trufat Werku Tower, Ground Floor, Room 217</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-gold-400 shrink-0" />
@@ -212,7 +212,7 @@ export const Footer: React.FC = () => {
               </li>
               <li className="pt-2">
                 <span className="inline-block text-[11px] bg-burgundy-900 border border-gold-500/25 px-2.5 py-1 rounded text-gold-300">
-                  Available for Hawassa & Bishoftu destination events
+                  Serving Hawassa, Shashemene & surrounding regions
                 </span>
               </li>
             </ul>

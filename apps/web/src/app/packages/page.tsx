@@ -18,7 +18,7 @@ const FAQS = [
   },
   {
     q: 'Are transport, delivery, and setup included in the package rates?',
-    a: 'Yes, our on-site team handles complete setup beginning 12 hours prior to guest arrival, as well as post-event dismantling and transport within Addis Ababa and regional venues.',
+    a: 'Yes, our on-site team handles complete setup beginning 12 hours prior to guest arrival, as well as post-event dismantling and transport across Hawassa, Shashemene, and regional venues.',
   },
   {
     q: 'Do you provide 3D spatial renders before event day?',

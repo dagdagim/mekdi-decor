@@ -6,13 +6,16 @@ import { Footer } from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: 'Mekdi Decor — Making Moments Unforgettable | Premium Event & Wedding Decoration',
   description:
-    'Ethiopia’s premier event decoration atelier. Specializing in luxury weddings, grand graduation galas, romantic engagements, floral stages, and venue transformations in Addis Ababa, Hawassa, Bishoftu, and Adama.',
+    'Ethiopia’s premier event decoration atelier based at Trufat Werku Tower in Hawassa. Specializing in luxury weddings, grand graduation galas, romantic engagements, floral stages, and bespoke venue transformations in Hawassa, Shashemene, and nationwide destination events.',
   keywords: [
     'Mekdi Decor',
+    'Event decoration Hawassa',
+    'Event decoration Shashemene',
+    'Hawassa wedding decor',
+    'Trufat Werku Tower',
     'Ethiopian wedding decoration',
-    'Event decoration Addis Ababa',
     'Luxury stage decoration',
-    'Floral design Ethiopia',
+    'Floral design Hawassa',
     'Graduation party decor',
     'Melse decoration',
     'Wedding planner Ethiopia',
