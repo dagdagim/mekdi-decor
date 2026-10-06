@@ -1,0 +1,15 @@
+{
+  "name": "mekdi-decor-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mekdi Decor — Making Moments Unforgettable. Premium Event Decoration Digital Platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=@mekdi-decor/web run dev",
+    "build": "npm --workspace=@mekdi-decor/web run build",
+    "start": "npm --workspace=@mekdi-decor/web run start"
+  }
+}
