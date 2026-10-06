@@ -30,9 +30,9 @@ export default function AboutPage() {
           <div className="lg:col-span-6 relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-elevated border-2 border-gold-500/30">
               <img
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1000&q=80"
+                src="/images/founder.jpg"
                 alt="Mekdes Tadesse — Founder & Lead Designer"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 p-6 rounded-2xl bg-burgundy-950 text-cream-50 border border-gold-500/40 shadow-xl max-w-xs hidden sm:block">
