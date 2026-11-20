@@ -39,12 +39,19 @@ export async function POST(request: Request) {
     const origin = request.headers.get('origin') || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002';
     const verifyUrl = `${origin}/verify-email?code=${newCode}&email=${encodeURIComponent(user.email)}`;
 
-    await sendVerificationEmail({
+    const emailSent = await sendVerificationEmail({
       toEmail: user.email,
       fullName: user.fullName,
       verificationCode: newCode,
       verificationUrl: verifyUrl,
     });
+
+    if (!emailSent) {
+      return NextResponse.json(
+        { success: false, error: 'Failed to send verification email. Please check your email or contact support.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,

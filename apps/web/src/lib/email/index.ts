@@ -1,21 +1,30 @@
 import nodemailer from 'nodemailer';
 
-const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = Number(process.env.SMTP_PORT) || 465;
-const SMTP_USER = process.env.SMTP_USER || 'mydeveloper444@gmail.com';
-const SMTP_PASS = process.env.SMTP_PASS || process.env.SMTP_PASSWORD || 'butvaazyizzyvaxx';
-const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || SMTP_USER;
-const FROM_NAME = process.env.SMTP_FROM_NAME || 'Mekdi Decor Concierge';
+export function getEmailConfig() {
+  const host = process.env.SMTP_HOST || 'smtp.gmail.com';
+  const port = Number(process.env.SMTP_PORT) || 465;
+  const user = process.env.SMTP_USER || 'mydeveloper444@gmail.com';
+  const rawPass = process.env.SMTP_PASS || process.env.SMTP_PASSWORD || 'pipicnkklybznkyl';
+  // Strip any spaces (Google App Passwords frequently copy-pasted as 'xxxx xxxx xxxx xxxx')
+  const pass = rawPass.replace(/\s+/g, '');
+  const fromEmail = process.env.SMTP_FROM_EMAIL || user;
+  const fromName = process.env.SMTP_FROM_NAME || 'Mekdi Decor Concierge';
 
-const transporter = nodemailer.createTransport({
-  host: SMTP_HOST,
-  port: SMTP_PORT,
-  secure: SMTP_PORT === 465, // true for 465 (SSL)
-  auth: {
-    user: SMTP_USER,
-    pass: SMTP_PASS,
-  },
-});
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465, // true for 465 (SSL)
+    auth: {
+      user,
+      pass,
+    },
+  });
+
+  return { transporter, fromEmail, fromName, host, port, user };
+}
+
+// Fallback singleton for backward compatibility
+export const transporter = getEmailConfig().transporter;
 
 export interface SendVerificationOptions {
   toEmail: string;
@@ -147,15 +156,17 @@ export async function sendVerificationEmail({
 </html>
     `;
 
-    await transporter.sendMail({
-      from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
+    const { transporter, fromEmail, fromName } = getEmailConfig();
+
+    const info = await transporter.sendMail({
+      from: `"${fromName}" <${fromEmail}>`,
       to: toEmail,
       subject: `Verify Your Email: ${verificationCode} — Mekdi Decor`,
       text: `Hello ${fullName},\n\nYour verification code for Mekdi Decor is: ${verificationCode}\n\nOr click here to verify: ${verificationUrl}\n\nMaking Moments Unforgettable.\nMekdi Decor Concierge`,
       html: htmlContent,
     });
 
-    console.log(`[Email] Verification email successfully sent to ${toEmail}`);
+    console.log(`[Email] Verification email successfully sent to ${toEmail} (ID: ${info.messageId})`);
     return true;
   } catch (error) {
     console.error(`[Email Error] Failed to send verification email to ${toEmail}:`, error);
@@ -306,8 +317,10 @@ export async function sendPaymentConfirmationEmail({
 </html>
     `;
 
+    const { transporter, fromEmail, fromName } = getEmailConfig();
+
     await transporter.sendMail({
-      from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
+      from: `"${fromName}" <${fromEmail}>`,
       to: toEmail,
       subject: `Deposit Confirmed: ${formattedAmount} for ${eventTitle} — Mekdi Decor`,
       text: `Thank you ${customerName}!\n\nWe have received your deposit of ${formattedAmount} (${provider} Ref: ${transactionRef}) for ${eventTitle}.\nYour event date is locked in our production calendar.\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,
@@ -460,8 +473,10 @@ export async function sendQuoteOfferEmail({
 </html>
     `;
 
+    const { transporter, fromEmail, fromName } = getEmailConfig();
+
     await transporter.sendMail({
-      from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
+      from: `"${fromName}" <${fromEmail}>`,
       to: toEmail,
       subject: `Your Decoration Proposal: ${quoteNumber} (${formattedDeposit} deposit) — Mekdi Decor`,
       text: `Dear ${customerName},\n\nYour official decoration proposal for ${eventTitle} is ready.\n\nTotal Investment: ${formattedTotal}\n50% Required Deposit: ${formattedDeposit}\n\nReview your proposal and pay deposit online here:\n${quotePaymentUrl}\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,

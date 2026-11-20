@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       if (newCode) {
         const origin = request.headers.get('origin') || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002';
         const verifyUrl = `${origin}/verify-email?code=${newCode}&email=${encodeURIComponent(existing.email)}`;
-        await sendVerificationEmail({
+        const emailSent = await sendVerificationEmail({
           toEmail: existing.email,
           fullName: existing.fullName,
           verificationCode: newCode,
@@ -43,8 +43,10 @@ export async function POST(request: Request) {
         });
         return NextResponse.json({
           success: true,
-          message: 'An unverified account exists. A fresh verification email has been sent!',
-          data: { email: existing.email, fullName: existing.fullName, isVerified: false },
+          message: emailSent
+            ? 'An unverified account exists. A fresh verification email has been sent!'
+            : 'An unverified account exists. If email does not arrive, please click Resend Code.',
+          data: { email: existing.email, fullName: existing.fullName, isVerified: false, emailSent },
         });
       }
     }
@@ -72,7 +74,9 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: 'Account created successfully! Please check your email for the verification code.',
+        message: emailSent
+          ? 'Account created successfully! Please check your email for the verification code.'
+          : 'Account created! Please check your email or use the Resend Code button if needed.',
         data: {
           id: user.id,
           email: user.email,
