@@ -8,7 +8,7 @@ export function getEmailConfig() {
   // Strip any spaces (Google App Passwords frequently copy-pasted as 'xxxx xxxx xxxx xxxx')
   const pass = rawPass.replace(/\s+/g, '');
   const fromEmail = process.env.SMTP_FROM_EMAIL || user;
-  const fromName = process.env.SMTP_FROM_NAME || 'Mekdi Decor Concierge';
+  const fromName = (process.env.SMTP_FROM_NAME || 'Mekdi Decor Concierge').replace(/^["']|["']$/g, '');
 
   const transporter = nodemailer.createTransport({
     host,
@@ -159,7 +159,11 @@ export async function sendVerificationEmail({
     const { transporter, fromEmail, fromName } = getEmailConfig();
 
     const info = await transporter.sendMail({
-      from: `"${fromName}" <${fromEmail}>`,
+      from: {
+        name: fromName,
+        address: fromEmail,
+      },
+      replyTo: fromEmail,
       to: toEmail,
       subject: `Verify Your Email: ${verificationCode} — Mekdi Decor`,
       text: `Hello ${fullName},\n\nYour verification code for Mekdi Decor is: ${verificationCode}\n\nOr click here to verify: ${verificationUrl}\n\nMaking Moments Unforgettable.\nMekdi Decor Concierge`,
@@ -320,7 +324,11 @@ export async function sendPaymentConfirmationEmail({
     const { transporter, fromEmail, fromName } = getEmailConfig();
 
     await transporter.sendMail({
-      from: `"${fromName}" <${fromEmail}>`,
+      from: {
+        name: fromName,
+        address: fromEmail,
+      },
+      replyTo: fromEmail,
       to: toEmail,
       subject: `Deposit Confirmed: ${formattedAmount} for ${eventTitle} — Mekdi Decor`,
       text: `Thank you ${customerName}!\n\nWe have received your deposit of ${formattedAmount} (${provider} Ref: ${transactionRef}) for ${eventTitle}.\nYour event date is locked in our production calendar.\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,
@@ -476,7 +484,11 @@ export async function sendQuoteOfferEmail({
     const { transporter, fromEmail, fromName } = getEmailConfig();
 
     await transporter.sendMail({
-      from: `"${fromName}" <${fromEmail}>`,
+      from: {
+        name: fromName,
+        address: fromEmail,
+      },
+      replyTo: fromEmail,
       to: toEmail,
       subject: `Your Decoration Proposal: ${quoteNumber} (${formattedDeposit} deposit) — Mekdi Decor`,
       text: `Dear ${customerName},\n\nYour official decoration proposal for ${eventTitle} is ready.\n\nTotal Investment: ${formattedTotal}\n50% Required Deposit: ${formattedDeposit}\n\nReview your proposal and pay deposit online here:\n${quotePaymentUrl}\n\nMekdi Decor Concierge\n+251 967 698 460 / +251 900 454 238`,
